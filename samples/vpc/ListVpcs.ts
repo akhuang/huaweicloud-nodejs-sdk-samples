@@ -1,12 +1,3 @@
-/**
- * Install dependencies: 
- * npm install @huaweicloud/huaweicloud-sdk-vpc dotenv
- * 
- * The sample uses dotenv to manage credential information. 
- * Before use, please rename .env.sample to .env and input your credential information.
- * 
- */
-
 import { ListVpcsRequest, VpcClient, VpcRegion } from "@huaweicloud/huaweicloud-sdk-vpc";
 import { BasicCredentials } from "@huaweicloud/huaweicloud-sdk-core/auth/BasicCredentials";
 import * as dotenv from "dotenv";
