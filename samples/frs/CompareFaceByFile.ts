@@ -10,40 +10,39 @@
 import { FrsClient, CompareFaceByFileRequest, CompareFaceByFileRequestBody, FrsRegion } from "@huaweicloud/huaweicloud-sdk-frs";
 import { BasicCredentials } from "@huaweicloud/huaweicloud-sdk-core/auth/BasicCredentials";
 import * as dotenv from 'dotenv';
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 
 dotenv.config();
 
 const ak = process.env.AK;
 const sk = process.env.SK;
-console.log(ak)
 
 const credentials = new BasicCredentials()
     .withAk(ak)
     .withSk(sk);
 
 (async () => {
-    await fetchDataWithRetry();
-})();
-
-async function fetchDataWithRetry() {
     try {
-        const client = FrsClient.newBuilder()
-            .withCredential(credentials)
-            .withRegion(FrsRegion.CN_EAST_3)
-            .build();
-        const request = new CompareFaceByFileRequest();
-
-        const body: CompareFaceByFileRequestBody = new CompareFaceByFileRequestBody();
-
-        const filePath = path.join(__dirname, '../images/1.jpeg');
-        body.withImage1File(fs.createReadStream(filePath))
-        body.withImage2File(fs.createReadStream(filePath))
-        request.withBody(body)
-        const result = await client.compareFaceByFile(request);
+        const result = await compareFaceByFile();
         console.log("Result:", JSON.stringify(result, null, 2));
     } catch (error: any) {
         console.error("Exception:", JSON.stringify(error, null, 2));
     }
+})();
+
+export async function compareFaceByFile() {
+    const client = FrsClient.newBuilder()
+        .withCredential(credentials)
+        .withRegion(FrsRegion.CN_EAST_3)
+        .build();
+    const request = new CompareFaceByFileRequest();
+
+    const body: CompareFaceByFileRequestBody = new CompareFaceByFileRequestBody();
+
+    const filePath = path.join(__dirname, '../images/1.jpeg');
+    body.withImage1File(fs.createReadStream(filePath))
+    body.withImage2File(fs.createReadStream(filePath))
+    request.withBody(body)
+    return await client.compareFaceByFile(request);
 }
