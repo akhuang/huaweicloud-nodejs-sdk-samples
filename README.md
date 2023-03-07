@@ -1,0 +1,2 @@
+# huaweicloud-nodejs-sdk-samples
+ 
