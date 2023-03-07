@@ -17,6 +17,7 @@ dotenv.config();
 
 const ak = process.env.AK;
 const sk = process.env.SK;
+console.log(ak)
 
 const credentials = new BasicCredentials()
     .withAk(ak)
@@ -36,7 +37,7 @@ async function fetchDataWithRetry() {
 
         const body: CompareFaceByFileRequestBody = new CompareFaceByFileRequestBody();
 
-        const filePath = path.join(__dirname, 'samples/images/1.jpeg');
+        const filePath = path.join(__dirname, '../images/1.jpeg');
         body.withImage1File(fs.createReadStream(filePath))
         body.withImage2File(fs.createReadStream(filePath))
         request.withBody(body)

@@ -14,7 +14,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const ak = process.env.AK;
-const sk = process.env.SK;
+const sk = process.env.SK; 
 
 const credentials = new BasicCredentials()
     .withAk(ak)
