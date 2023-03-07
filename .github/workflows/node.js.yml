@@ -27,9 +27,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: |
-          echo "${{ secrets.AK }}" > .env
-          echo "${{ secrets.SK }}" > .env
-          echo "${{ secrets.PROJECT_ID }}" > .env
+          echo "AK=${{ secrets.AK }}" > .env
+          echo "SK=${{ secrets.SK }}" > .env
+          echo "PROJECT_ID=${{ secrets.PROJECT_ID }}" > .env
     - run: npm install
     - run: npm run build --if-present
     - run: npm run test 
