@@ -22,14 +22,16 @@ const credentials = new BasicCredentials()
     .withAk(ak)
     .withSk(sk);
 
-(async () => {
-    try {
-        const result = await compareFaceByFile();
-        console.log("Result:", JSON.stringify(result, null, 2));
-    } catch (error: any) {
-        console.error("Exception:", JSON.stringify(error, null, 2));
-    }
-})();
+if (module === require.main) {
+    (async () => {
+        try {
+            const result = await compareFaceByFile();
+            console.log("Result:", JSON.stringify(result, null, 2));
+        } catch (error: any) {
+            console.error("Exception:", error);
+        }
+    })();
+}
 
 export async function compareFaceByFile() {
     const client = FrsClient.newBuilder()

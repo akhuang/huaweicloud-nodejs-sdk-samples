@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "ts-node ./samples/**/*.ts",
-    "test": "jest ./tests/**/*.test.ts"
+    "test": "jest"
   },
   "dependencies": {
     "@huaweicloud/huaweicloud-sdk-frs": "^3.1.26",
