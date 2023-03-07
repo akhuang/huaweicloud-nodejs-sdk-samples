@@ -127,3 +127,5 @@ dist
 .pnp.*
 
 .env
+.DS_Store
+package-lock.json
