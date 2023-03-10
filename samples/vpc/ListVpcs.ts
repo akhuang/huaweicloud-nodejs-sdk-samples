@@ -7,7 +7,7 @@ dotenv.config();
 const ak = process.env.AK;
 const sk = process.env.SK;
 
-const credentials = new BasicCredentials()
+let credentials = new BasicCredentials()
     .withAk(ak)
     .withSk(sk);
  
@@ -16,6 +16,13 @@ if (module === require.main) {
     (async () => {
         try {
             const result = await listVpcs();
+            console.log("Result:", JSON.stringify(result, null, 2));
+        } catch (error) {
+            console.error("Exception:", error);
+        } 
+
+        try {
+            const result = await listVpcsWithProjectId();
             console.log("Result:", JSON.stringify(result, null, 2));
         } catch (error) {
             console.error("Exception:", error);
@@ -31,3 +38,15 @@ export async function listVpcs() {
     const request = new ListVpcsRequest();
     return await client.listVpcs(request);
 }
+
+export async function listVpcsWithProjectId() {
+    credentials = credentials.withProjectId(process.env.PROJECT_ID);
+
+    const client = VpcClient.newBuilder()
+        .withCredential(credentials)
+        .withEndpoint("https://vpc.cn-east-3.myhuaweicloud.com")
+        .build();
+    const request = new ListVpcsRequest();
+    return await client.listVpcs(request);
+}
+

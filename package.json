@@ -4,8 +4,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@huaweicloud/huaweicloud-sdk-frs": "^3.1.26",
-    "@huaweicloud/huaweicloud-sdk-vpc": "^3.1.26",
+    "@huaweicloud/huaweicloud-sdk-frs": "^3.1.28",
+    "@huaweicloud/huaweicloud-sdk-functiongraph": "^3.1.28",
+    "@huaweicloud/huaweicloud-sdk-vpc": "^3.1.28",
     "dotenv": "^16.0.3"
   },
   "devDependencies": {
